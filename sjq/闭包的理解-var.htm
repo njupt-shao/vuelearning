@@ -1,0 +1,52 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+  </body>
+  <script>
+    var func;
+    if (true) {
+      var name = "in";
+      func = () => {
+        console.log(name);
+      };
+    }
+    name = "out";
+    func();
+
+    //由于var不存在块级作用域，在if活着for中函数使用到变量的时候，会出现意料之外的结果
+    // var array = document.getElementsByTagName('button')
+    // for (var index = 0; index < array.length; index++) {
+    //     array[index].addEventListener('click',()=>{
+    //         console.log(index);
+    //     })
+
+    // }
+
+    // 使用闭包是利用了函数作用域
+    // var array = document.getElementsByTagName("button");
+    // for (var index = 0; index < array.length; index++) {
+    //   ((i) => {
+    //     array[i].addEventListener("click", () => {
+    //       console.log(i);
+    //     });
+    //   })(index);
+    // }
+
+    //let 块级作用域
+    var array = document.getElementsByTagName("button");
+    for (let index = 0; index < array.length; index++) {
+      array[index].addEventListener("click", () => {
+        console.log(index);
+      });
+    }
+  </script>
+</html>
