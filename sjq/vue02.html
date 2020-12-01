@@ -6,7 +6,7 @@
   </head>
   <body>
     <div id="root">
-      hello,{{message}}
+      {{ 1+1 }}
       <div id="vif" v-if="seen">条件渲染</div>
       <ol>
         <li v-for="todo in todos">{{ todo.text }}</li>
@@ -28,6 +28,7 @@
           v-bind:key="item.id"
         ></todo-item>
       </ol>
+      <div v-bind:id="1+1"></div>
     </div>
   </body>
   <script src="../publicfiles/vue.js"></script>
