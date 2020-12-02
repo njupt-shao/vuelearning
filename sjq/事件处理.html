@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="example-1">
+      <button @click="add">Add 1</button>
+      <button @click="minus">minus 1</button>
+      <!-- 不传参就默认传事件，显示使用用$event -->
+      <button @click="sayhai()">sayhai</button>
+      <p>The button above has been clicked {{ counter }} times.</p>
+    </div>
+  </body>
+  <script src="../publicfiles/vue.js"></script>
+  <script>
+    var example1 = new Vue({
+      el: "#example-1",
+      data: {
+        counter: 0,
+      },
+      // methods 带s
+      methods: {
+        add() {
+          //这里不能使用箭头函数，作为方法而不是函数存在
+          this.counter = this.counter + 1;
+        },
+        minus() {
+          this.counter = this.counter - 1;
+        },
+        sayhai(message) {
+          console.log(event);
+        },
+      },
+    });
+  </script>
+</html>
+<!-- https://cn.vuejs.org/v2/guide/events.html -->
