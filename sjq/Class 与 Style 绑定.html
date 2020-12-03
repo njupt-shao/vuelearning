@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 对象语法 -->
+      <div
+        class="static"
+        v-bind:class="{ 'active': isActive ,'text-dager':hasError}"
+      ></div>
+      <!-- 数组语法 -->
+      <div :class="[class1,class2]"></div>
+
+      <!-- 对象语法 -->
+      <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">
+        {{message}}
+      </div>
+      <div v-bind:style="styleObject">{{message}}</div>
+    </div>
+  </body>
+  <script src="../publicfiles/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#root",
+      data: {
+        message: "world!",
+        isActive: true,
+        hasError: false,
+        class1: "aa",
+        class2: "bb",
+        activeColor: "red",
+        fontSize: 30,
+        styleObject: {
+          color: "red",
+          fontSize: "13px",
+        },
+      },
+    });
+  </script>
+</html>
