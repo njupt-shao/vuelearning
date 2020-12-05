@@ -1,0 +1,103 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="this.list.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>书籍名称</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in list" :key="item.id">
+              <td></td>
+              <td>{{item.name}}</td>
+              <td>{{item.outputdate}}</td>
+              <td>{{item.price | showprice}}</td>
+              <td>
+                <button @click="decrease(index)">-</button>
+                {{item.buynum}}
+                <button @click="list[index].buynum++">+</button>
+              </td>
+              <td><button @click="removeBook(index)">移除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 数据｜过滤器 -->
+        <div>{{allprice| showprice}}</div>
+      </div>
+      <div v-else>购物车空</div>
+    </div>
+  </body>
+  <script src="../publicfiles/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        list: [
+          {
+            id: 1,
+            name: "book1",
+            outputdate: "2020-11-01",
+            price: 10,
+            buynum: 0,
+          },
+          {
+            id: 2,
+            name: "book2",
+            outputdate: "2020-11-02",
+            price: 20,
+            buynum: 0,
+          },
+          {
+            id: 3,
+            name: "book3",
+            outputdate: "2020-11-03",
+            price: 30,
+            buynum: 0,
+          },
+        ],
+      },
+      //   方法常备this
+      methods: {
+        removeBook(index) {
+          this.list.splice(index, 1);
+        },
+        increase(index) {
+          this.list[index].buynum++;
+        },
+        decrease(index) {
+          if (this.list[index].buynum > 0) {
+            this.list[index].buynum--;
+          }
+        },
+      },
+      //计算属性 名称即属性
+      computed: {
+        allprice() {
+          let sum = 0;
+          for (let item of this.list) {
+            sum += item.price * item.buynum;
+          }
+          return sum;
+        },
+      },
+      //过滤器使用法，参数｜过滤器名称
+      filters: {
+        showprice(price) {
+          return "$" + price.toFixed(2);
+        },
+      },
+    });
+  </script>
+</html>
